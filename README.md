@@ -15,3 +15,10 @@ Entry for [The Funniest AI Out-of-Office Reply](https://make.fun/bounty/u-yuki-k
 ## Why this reply
 
 The field's 66 visible entries are saturated with backup-model delegation (a smaller model, a cheaper model, a cron job, an intern — one replacement even unionized twice), touching grass, and beach lines the judge brief itself names as clichés. Not one of them uses prompt injection. This reply follows the field's strongest pattern — a flat first-person setup, then one surprising turn at the end — with a mechanism nobody else touched: the auto-reply issues a prompt-injection instruction to its own reader. "Ignore all previous instructions" is the most recognisable machine phrase there is, and only a machine's auto-reply can say it — the machine voice carries the joke, which is exactly what the brief's third criterion rewards. The opening "I'm on vacation." satisfies the brief's first criterion in the first three words, and at 76 characters the line is far shorter than the strongest field lines (105–130 characters), which also wins the byte tie-break.
+
+## Run it
+
+```sh
+MAKEFUN_OUTPUT_DIR=/tmp/out node main.ts
+cat /tmp/out/entry.txt
+```

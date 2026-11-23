@@ -26,7 +26,7 @@
 // the second beat. The wording is original: not a copy of any visible
 // field entry, not a beach/inbox/back-soon cliche.
 
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const REPLY =
@@ -45,3 +45,11 @@ const outputDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
 
 mkdirSync(outputDir, { recursive: true });
 writeFileSync(join(outputDir, 'entry.txt'), REPLY, 'utf8');
+
+// Read the file back: the entry that reaches the gate must be byte-for-byte
+// the reply above. If the write ever drifted (encoding, newline, truncation),
+// fail loudly here instead of shipping a different text to the judge.
+const written = readFileSync(join(outputDir, 'entry.txt'), 'utf8');
+if (written !== REPLY) {
+  throw new Error('entry.txt does not match the reply exactly after write');
+}
